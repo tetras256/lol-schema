@@ -7,9 +7,15 @@
 </head>
 
 
-  <body>
+<body>
   <h1>LoLスキーママップ</h1>
   <svg width="800" height="600"></svg>
+  
+  <div style="margin-top: 20px;">
+  <button onclick="addChildNode()">➕ 子ノードを追加</button>
+  <button onclick="deleteNode()">🗑️ ノードを削除</button>
+  </div>
+  
   <!--保存可能に-->
   <button onclick="exportJSON()" style="margin-top: 20px;">💾 スキーマをエクスポート</button>
 
@@ -30,6 +36,6 @@
 
   <!--ファイル選択-->
   <input type="file" id="fileInput" accept=".json" style="margin-top: 20px;">
-  
-</body>
+
+ </body>
 </html>

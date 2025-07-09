@@ -149,6 +149,53 @@ function updateTree() {
 // 初回描画
 updateTree();
 
+//ノードの追加
+function addChildNode() {
+  if (!selectedNode) {
+    alert("ノードを選択してください");
+    return;
+  }
+
+  const newName = prompt("新しいノードの名前を入力してください：");
+  if (!newName) return;
+
+  // 子ノード配列がなければ作成
+  if (!selectedNode.data.children) {
+    selectedNode.data.children = [];
+  }
+
+  selectedNode.data.children.push({ name: newName });
+  root = d3.hierarchy(root.data); // 階層構造を再構築
+  updateTree();
+}
+
+//ノードの削除
+function deleteNode() {
+  if (!selectedNode) {
+    alert("ノードを選択してください");
+    return;
+  }
+
+  if (selectedNode === root) {
+    alert("ルートノードは削除できません");
+    return;
+  }
+
+  const parent = selectedNode.parent;
+  const index = parent.data.children.findIndex(child => child.name === selectedNode.data.name);
+
+  if (index !== -1) {
+    parent.data.children.splice(index, 1);
+    if (parent.data.children.length === 0) {
+      delete parent.data.children;
+    }
+    root = d3.hierarchy(root.data);
+    updateTree();
+  }
+}
+
+
+
 
 
 
